@@ -1,13 +1,13 @@
+from flask import Flask
+from flask_cors import CORS
+import cloudinary
 from pathlib import Path
 from dotenv import load_dotenv
-from routes import userRoute, authRoute
+import os
 from mysql import mysql
 from utils.errorHandler import error_handler
 from werkzeug.exceptions import HTTPException
-import os
-from flask import Flask
-import cloudinary
-from flask_cors import CORS
+from routes import userRoute, authRoute, roseRoute
 
 app = Flask(__name__)
 
@@ -28,7 +28,8 @@ cloudinary.config(
 )
 
 app.register_blueprint(authRoute.auth, url_prefix='/api/v1/auth')
-
 app.register_blueprint(userRoute.user, url_prefix='/api/v1/user')
+
+app.register_blueprint(roseRoute.rose, url_prefix='/api/v1/roses')
 
 app.register_error_handler(HTTPException, error_handler)
