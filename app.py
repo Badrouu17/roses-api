@@ -27,6 +27,12 @@ cloudinary.config(
     api_secret=os.getenv("CLOUDINARY_API_SECRET")
 )
 
+
+@app.route('/')
+def hello_world():
+    return 'ROSES API'
+
+
 app.register_blueprint(authRoute.auth, url_prefix='/api/v1/auth')
 app.register_blueprint(userRoute.user, url_prefix='/api/v1/user')
 
