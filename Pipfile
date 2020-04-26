@@ -17,6 +17,7 @@ moment = "*"
 cloudinary = "*"
 flask-cors = "*"
 gunicorn = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.8"
