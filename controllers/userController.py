@@ -38,7 +38,7 @@ def savePhotoInDb(url):
 def uploadPhotos():
     url = uploadToCloud()
     savePhotoInDb(url)
-    return res(200, {"msg": "photo uploeded successfully!"})
+    return res(200, {"url": url, "msg": "photo uploeded successfully!"})
 
 
 def updateMe():
@@ -58,6 +58,8 @@ def updateMe():
         cnx.commit()
     db.execute(getUserWithId(req.user["user_id"]))
     user = db.fetchone()
+    # remove password from output
+    del user["password"]
     req.user = user
     return res(200, user)
 

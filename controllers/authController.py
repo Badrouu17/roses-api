@@ -38,6 +38,7 @@ def signup():
     # insert the new user
     db.execute(insertUser(newUser))
     cnx.commit()
+
     # get the same new user
     db.execute(getUserWithEmail(newUser["email"]))
     resulat = db.fetchall()
